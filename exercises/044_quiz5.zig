@@ -19,6 +19,7 @@ const Elephant = struct {
 pub fn main() void {
     var elephantA = Elephant{ .letter = 'A' };
     // (Please add Elephant B here!)
+    var elephantC = Elephant{ .letter = 'B' };
     var elephantC = Elephant{ .letter = 'C' };
 
     // Link the elephants so that each tail "points" to the next elephant.
