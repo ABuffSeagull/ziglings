@@ -4,6 +4,11 @@ const Step = std.build.Step;
 const assert = std.debug.assert;
 const print = std.debug.print;
 
+// When changing this version, be sure to also update README.md in two places:
+//     1) Getting Started
+//     2) Version Changes
+const needed_version = std.SemanticVersion.parse("0.9.0-dev.137") catch unreachable;
+
 const Exercise = struct {
     /// main_file must have the format key_name.zig.
     /// The key will be used as a shorthand to build
@@ -73,12 +78,12 @@ const exercises = [_]Exercise{
     },
     .{
         .main_file = "007_strings2.zig",
-        .output = "Ziggy",
+        .output = "Ziggy played guitar\nJamming good with Andrew Kelley\nAnd the Spiders from Mars",
         .hint = "Please fix the lyrics!",
     },
     .{
         .main_file = "008_quiz.zig",
-        .output = "Program in Zig",
+        .output = "Program in Zig!",
         .hint = "See if you can fix the program!",
     },
     .{
@@ -87,16 +92,16 @@ const exercises = [_]Exercise{
     },
     .{
         .main_file = "010_if2.zig",
-        .output = "price is $17",
+        .output = "With the discount, the price is $17.",
     },
     .{
         .main_file = "011_while.zig",
-        .output = "n=1024",
+        .output = "2 4 8 16 32 64 128 256 512 n=1024",
         .hint = "You probably want a 'less than' condition.",
     },
     .{
         .main_file = "012_while2.zig",
-        .output = "n=1024",
+        .output = "2 4 8 16 32 64 128 256 512 n=1024",
         .hint = "It might help to look back at the previous exercise.",
     },
     .{
@@ -117,12 +122,12 @@ const exercises = [_]Exercise{
     },
     .{
         .main_file = "017_quiz2.zig",
-        .output = "8, Fizz, Buzz, 11, Fizz, 13, 14, FizzBuzz, 16",
+        .output = "1, 2, Fizz, 4, Buzz, Fizz, 7, 8, Fizz, Buzz, 11, Fizz, 13, 14, FizzBuzz, 16,",
         .hint = "This is a famous game!",
     },
     .{
         .main_file = "018_functions.zig",
-        .output = "Question: 42",
+        .output = "Answer to the Ultimate Question: 42",
         .hint = "Can you help write the function?",
     },
     .{
@@ -158,7 +163,7 @@ const exercises = [_]Exercise{
     },
     .{
         .main_file = "026_hello2.zig",
-        .output = "Hello world",
+        .output = "Hello world!",
         .hint = "Try using a try!",
         .check_stdout = true,
     },
@@ -204,7 +209,7 @@ const exercises = [_]Exercise{
     },
     .{
         .main_file = "036_enums2.zig",
-        .output = "#0000ff",
+        .output = "<p>\n  <span style=\"color: #ff0000\">Red</span>\n  <span style=\"color: #00ff00\">Green</span>\n  <span style=\"color: #0000ff\">Blue</span>\n</p>",
         .hint = "I'm feeling blue about this.",
     },
     .{
@@ -213,7 +218,7 @@ const exercises = [_]Exercise{
     },
     .{
         .main_file = "038_structs2.zig",
-        .output = "Character 2 - G:10 H:100 XP:20",
+        .output = "Character 1 - G:20 H:100 XP:10\nCharacter 2 - G:10 H:100 XP:20",
     },
     .{
         .main_file = "039_pointers.zig",
@@ -263,7 +268,7 @@ const exercises = [_]Exercise{
     .{
         .main_file = "049_quiz6.zig",
         .output = "A  B  C  Cv Bv Av",
-        .hint = "Now you're writting Zig!",
+        .hint = "Now you're writing Zig!",
     },
     .{
         .main_file = "050_no_value.zig",
@@ -275,7 +280,7 @@ const exercises = [_]Exercise{
     },
     .{
         .main_file = "052_slices.zig",
-        .output = "Hand1: A 4 K 8 Hand2: 5 2 Q J",
+        .output = "Hand1: A 4 K 8 \nHand2: 5 2 Q J",
     },
     .{
         .main_file = "053_slices2.zig",
@@ -297,6 +302,146 @@ const exercises = [_]Exercise{
         .main_file = "057_unions3.zig",
         .output = "Insect report! Ant alive is: true. Bee visited 17 flowers.",
     },
+    .{
+        .main_file = "058_quiz7.zig",
+        .output = "Archer's Point--2->Bridge--1->Dogwood Grove--3->Cottage--2->East Pond--1->Fox Pond",
+        .hint = "This is the biggest program we've seen yet. But you can do it!",
+    },
+    .{
+        .main_file = "059_integers.zig",
+        .output = "Zig is cool.",
+    },
+    .{
+        .main_file = "060_floats.zig",
+        .output = "Shuttle liftoff weight: 1995796kg",
+    },
+    .{
+        .main_file = "061_coercions.zig",
+        .output = "Letter: A",
+    },
+    .{
+        .main_file = "062_loop_expressions.zig",
+        .output = "Current language: Zig",
+        .hint = "Surely the current language is 'Zig'!",
+    },
+    .{
+        .main_file = "063_labels.zig",
+        .output = "Enjoy your Cheesy Chili!",
+    },
+    .{
+        .main_file = "064_builtins.zig",
+        .output = "1101 + 0101 = 0010 (true). Furthermore, 11110000 backwards is 00001111.",
+    },
+    .{
+        .main_file = "065_builtins2.zig",
+        .output = "A Narcissus loves all Narcissuses. He has room in his heart for: me myself.",
+    },
+    .{
+        .main_file = "066_comptime.zig",
+        .output = "Immutable: 12345, 987.654; Mutable: 54321, 456.789; Types: comptime_int, comptime_float, u32, f32",
+        .hint = "It may help to read this one out loud to your favorite stuffed animal until it sinks in completely.",
+    },
+    .{
+        .main_file = "067_comptime2.zig",
+        .output = "A BB CCC DDDD",
+    },
+    .{
+        .main_file = "068_comptime3.zig",
+        .output = "Minnow (1:32, 4 x 2)\nShark (1:16, 8 x 5)\nWhale (1:1, 143 x 95)\n",
+    },
+    .{
+        .main_file = "069_comptime4.zig",
+        .output = "s1={ 1, 2, 3 }, s2={ 1, 2, 3, 4, 5 }, s3={ 1, 2, 3, 4, 5, 6, 7 }",
+    },
+    .{
+        .main_file = "070_comptime5.zig",
+        .output = "\"Quack.\" ducky1: true, \"Squeek!\" ducky2: true, ducky3: false",
+        .hint = "Have you kept the wizard hat on?",
+    },
+    .{
+        .main_file = "071_comptime6.zig",
+        .output = "Narcissus has room in his heart for: me myself.",
+    },
+    .{
+        .main_file = "072_comptime7.zig",
+        .output = "26",
+    },
+    .{
+        .main_file = "073_comptime8.zig",
+        .output = "My llama value is 25.",
+    },
+    .{
+        .main_file = "074_comptime9.zig",
+        .output = "My llama value is 2.",
+    },
+    .{
+        .main_file = "075_quiz8.zig",
+        .output = "Archer's Point--2->Bridge--1->Dogwood Grove--3->Cottage--2->East Pond--1->Fox Pond",
+        .hint = "Roll up those sleeves. You get to WRITE some code for this one.",
+    },
+    .{
+        .main_file = "076_sentinels.zig",
+        .output = "Array:123056. Many-item pointer:123.",
+    },
+    .{
+        .main_file = "077_sentinels2.zig",
+        .output = "Weird Data!",
+    },
+    .{
+        .main_file = "078_sentinels3.zig",
+        .output = "Weird Data!",
+    },
+    .{
+        .main_file = "079_quoted_identifiers.zig",
+        .output = "Sweet freedom: 55, false.",
+        .hint = "Help us, Zig Programmer, you're our only hope!",
+    },
+    .{
+        .main_file = "080_anonymous_structs.zig",
+        .output = "[Circle(i32): 25,70,15] [Circle(f32): 25.2,71.0,15.7]",
+    },
+    .{
+        .main_file = "081_anonymous_structs2.zig",
+        .output = "x:205 y:187 radius:12",
+    },
+    .{
+        .main_file = "082_anonymous_structs3.zig",
+        .output = "\"0\"(bool):true \"1\"(bool):false \"2\"(i32):42 \"3\"(f32):3.14159202e+00",
+        .hint = "This one is a challenge! But you have everything you need.",
+    },
+    .{
+        .main_file = "083_anonymous_lists.zig",
+        .output = "I say hello!",
+    },
+    .{
+        .main_file = "084_async.zig",
+        .output = "foo() A",
+        .hint = "Read the facts. Use the facts.",
+    },
+    .{
+        .main_file = "085_async2.zig",
+        .output = "Hello async!",
+    },
+    .{
+        .main_file = "086_async3.zig",
+        .output = "5 4 3 2 1",
+    },
+    .{
+        .main_file = "087_async4.zig",
+        .output = "1 2 3 4 5",
+    },
+    .{
+        .main_file = "088_async5.zig",
+        .output = "Example Title.",
+    },
+    .{
+        .main_file = "089_async6.zig",
+        .output = ".com: Example Title, .org: Example Title.",
+    },
+    .{
+        .main_file = "090_async7.zig",
+        .output = "beef? BEEF!",
+    },
 };
 
 /// Check the zig version to make sure it can compile the examples properly.
@@ -306,7 +451,6 @@ fn checkVersion() bool {
         return false;
     }
 
-    const needed_version = std.SemanticVersion.parse("0.8.0-dev.1065") catch unreachable;
     const version = std.builtin.zig_version;
     const order = version.order(needed_version);
     return order != .lt;
@@ -328,12 +472,14 @@ pub fn build(b: *Builder) void {
             \\
             \\Ziglings requires development build
             \\
-            \\    0.8.0-dev.1065
+            \\    {}
             \\
             \\or higher. Please download a development ("master") build from
-            \\https://ziglang.org/download/
             \\
-        , .{});
+            \\    https://ziglang.org/download/
+            \\
+            \\
+        , .{needed_version});
         std.os.exit(0);
     }
 
@@ -414,7 +560,7 @@ pub fn build(b: *Builder) void {
         named_verify.dependOn(&verify_step.step);
 
         const chain_verify = b.allocator.create(Step) catch unreachable;
-        chain_verify.* = Step.initNoOp(.Custom, b.fmt("chain {s}", .{key}), b.allocator);
+        chain_verify.* = Step.initNoOp(.custom, b.fmt("chain {s}", .{key}), b.allocator);
         chain_verify.dependOn(&verify_step.step);
 
         const named_chain = b.step(b.fmt("{s}_start", .{key}), b.fmt("Check all solutions starting at {s}", .{ex.main_file}));
@@ -441,7 +587,7 @@ const ZiglingStep = struct {
     pub fn create(builder: *Builder, exercise: Exercise, use_healed: bool) *@This() {
         const self = builder.allocator.create(@This()) catch unreachable;
         self.* = .{
-            .step = Step.init(.Custom, exercise.main_file, builder.allocator, make),
+            .step = Step.init(.custom, exercise.main_file, builder.allocator, make),
             .exercise = exercise,
             .builder = builder,
             .use_healed = use_healed,
@@ -534,7 +680,7 @@ const ZiglingStep = struct {
             return error.InvalidOutput;
         }
 
-        print("{s}PASSED: {s}{s}\n", .{ green_text, output, reset_text });
+        print("{s}PASSED:\n{s}{s}\n", .{ green_text, output, reset_text });
     }
 
     // The normal compile step calls os.exit, so we can't use it as a library :(
